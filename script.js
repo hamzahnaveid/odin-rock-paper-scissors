@@ -26,58 +26,72 @@ function getHumanChoice() {
     return humanChoice
 }
 
-// 3. Declare player score variables
-let humanScore = 0
-let computerScore = 0
+// 5. Write the logic to play the entire game
+function playGame() {
+    // 3. Declare player score variables
+    let humanScore = 0
+    let computerScore = 0
 
-// 4. Write the logic to play a single round
-function playRound(humanChoice, computerChoice) {
-    if (computerChoice == 'ROCK') {
-        switch(humanChoice) {
-            case 'ROCK' :
-                console.log('TIE! No points awarded')
-                break
-            case 'PAPER' :
-                console.log('YOU WIN! PAPER beats ROCK')
-                humanScore++
-                break
-            case 'SCISSORS' :
-                console.log('YOU LOSE! ROCK beats SCISSORS')
-                computerScore++
-                break
+    // 4. Write the logic to play a single round
+    function playRound(humanChoice, computerChoice) {
+        if (computerChoice == 'ROCK') {
+            switch(humanChoice) {
+                case 'ROCK' :
+                    console.log('TIE! No points awarded')
+                    break
+                case 'PAPER' :
+                    console.log('YOU WIN! PAPER beats ROCK')
+                    humanScore++
+                    break
+                case 'SCISSORS' :
+                    console.log('YOU LOSE! ROCK beats SCISSORS')
+                    computerScore++
+                    break
+            }
+        }
+        else if (computerChoice == 'PAPER') {
+            switch(humanChoice) {
+                case 'ROCK' :
+                    console.log('YOU LOSE! PAPER beats ROCK')
+                    computerScore++
+                    break
+                case 'PAPER' :
+                    console.log('TIE! No points awarded')
+                    break
+                case 'SCISSORS' :
+                    console.log('YOU WIN! SCISSORS beats PAPER')
+                    humanScore++
+                    break
+            }
+        }
+        else { //when computerChoice is SCISSORS
+            switch(humanChoice) {
+                case 'ROCK' :
+                    console.log('YOU WIN! ROCK beats SCISSORS')
+                    humanScore++
+                    break
+                case 'PAPER' :
+                    console.log('YOU LOSE! SCISSORS beats PAPER')
+                    computerScore++
+                    break
+                case 'SCISSORS' :
+                    console.log('TIE! No points awarded')
+                    break
+            }
         }
     }
-    else if (computerChoice == 'PAPER') {
-        switch(humanChoice) {
-            case 'ROCK' :
-                console.log('YOU LOSE! PAPER beats ROCK')
-                computerScore++
-                break
-            case 'PAPER' :
-                console.log('TIE! No points awarded')
-                break
-            case 'SCISSORS' :
-                console.log('YOU WIN! SCISSORS beats PAPER')
-                humanScore++
-                break
-        }
+
+    for (let i = 1; i <= 5; i++) {
+        playRound(getHumanChoice(), getComputerChoice())
     }
-    else { //when computerChoice is SCISSORS
-        switch(humanChoice) {
-            case 'ROCK' :
-                console.log('YOU WIN! ROCK beats SCISSORS')
-                humanScore++
-                break
-            case 'PAPER' :
-                console.log('YOU LOSE! SCISSORS beats PAPER')
-                computerScore++
-                break
-            case 'SCISSORS' :
-                console.log('TIE! No points awarded')
-                break
-        }
+
+    if (humanScore > computerScore) {
+        alert('YOU WON! Humans live to see another day')
+    }
+    else if (computerScore > humanScore) {
+        alert('YOU LOST! Humanity is doomed...')
+    }
+    else {
+        alert('IT\'S A TIE!...Nailbiting stuff')
     }
 }
-
-
-// 5. Write the logic to play the entire game
